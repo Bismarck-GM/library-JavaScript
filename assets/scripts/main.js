@@ -1,17 +1,17 @@
 const myLibrary = [];
+const Book = (title, author, page, readed) => {
+  const getTitle = () => title;
+  const getAuthor = () => author;
+  const getPage = () => page;
+  const getReaded = () => readed;
 
-function Book(title, author, page, readed) {
-  if (readed === 'read') {
-    readed = true;
-  } else {
-    readed = false;
-  }
-
-  this.title = title;
-  this.author = author;
-  this.page = page;
-  this.readed = readed;
-}
+  return {
+    getTitle,
+    getAuthor,
+    getPage,
+    getReaded,
+  };
+};
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
@@ -65,7 +65,7 @@ bookForm.addEventListener('submit', (e) => {
 
   const [title, author, page, readed] = bookParams();
 
-  const createdBook = new Book(title.value, author.value, page.value, readed.value);
+  const createdBook = Book(title.value, author.value, page.value, readed.value);
 
   addElementsToHtml(title.value, author.value, page.value, readed.value);
 
