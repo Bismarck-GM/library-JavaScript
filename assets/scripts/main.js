@@ -21,19 +21,21 @@ function addElementsToHtml(createdBook) {
   const td4 = document.createElement('td');
   const deleteButton = document.createElement('td');
 
+  tr.id = 'bookTr';
   td1.textContent = createdBook.title;
   td2.textContent = createdBook.author;
   td3.textContent = createdBook.page;
   if (createdBook.read === true) {
     td4.textContent = 'Read';
+    td4.className = 'is-success';
   } else {
     td4.textContent = 'Not read';
+    td4.className = 'is-warning';
   }
 
   deleteButton.textContent = 'Delete';
   deleteButton.className = 'is-danger';
   deleteButton.id = 'delete-btn';
-  td4.className = 'read-button is-success';
   td4.id = 'read-btn';
 
   tr.appendChild(td1);
