@@ -73,14 +73,14 @@ bookForm.addEventListener('submit', (e) => {
   addBookToLibrary(createdBook);
 });
 
-bookTable.addEventListener('click', (e) => {
+const toggleD = (e) => {
   if (e.target.className === 'delete') {
     const tr = e.target.parentElement;
     bookTable.removeChild(tr);
   }
-});
+};
 
-bookTable.addEventListener('click', (e) => {
+const toggleR = (e) => {
   if (e.target.id === 'readButton') {
     const btn = e.target;
     if (btn.textContent === 'read') {
@@ -89,4 +89,9 @@ bookTable.addEventListener('click', (e) => {
       btn.textContent = 'read';
     }
   }
+};
+
+bookTable.addEventListener('click', (e) => {
+  toggleR(e);
+  toggleD(e);
 });
