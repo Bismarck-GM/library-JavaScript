@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./assets/stylesheet/index.css">
+  <title>Library</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Library</h1>
+    <form id="book-form">
+      <input id="title" type="text" placeholder="title" required>
+      <input id="author" type="text" placeholder="author" required>
+      <input id="page" type="number" placeholder="pages" required>
+      <select id="read">
+        <option value="read">Read</option>
+        <option value="already readed">Already Readed</option>
+      </select>
+      <button>Add a new book</button>
+    </form>
+    <table id="book-table">
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Number of Pages</th>
+      </tr>
+
+    </table>
+  </div>
+  <script src = "./assets/scripts/main.js"></script>
+</body>
+</html>
