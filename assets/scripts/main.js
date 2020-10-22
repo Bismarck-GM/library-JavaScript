@@ -1,17 +1,10 @@
 const myLibrary = [];
-const Book = (title, author, page, readed) => {
-  const getTitle = () => title;
-  const getAuthor = () => author;
-  const getPage = () => page;
-  const getReaded = () => readed;
-
-  return {
-    getTitle,
-    getAuthor,
-    getPage,
-    getReaded,
-  };
-};
+const Book = (title, author, page, read) => ({
+  title,
+  author,
+  page,
+  read,
+});
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
@@ -20,22 +13,28 @@ function addBookToLibrary(book) {
 const bookForm = document.forms['book-form'];
 const bookTable = document.querySelector('#book-table');
 
-function addElementsToHtml(title, author, page, readed) {
+function addElementsToHtml(createdBook) {
   const tr = document.createElement('tr');
   const td1 = document.createElement('td');
   const td2 = document.createElement('td');
   const td3 = document.createElement('td');
-  const td4 = document.createElement('button');
-  const deleteButton = document.createElement('button');
+  const td4 = document.createElement('td');
+  const deleteButton = document.createElement('td');
 
-  td1.textContent = title;
-  td2.textContent = author;
-  td3.textContent = page;
-  td4.textContent = readed;
+  td1.textContent = createdBook.title;
+  td2.textContent = createdBook.author;
+  td3.textContent = createdBook.page;
+  if (createdBook.read === true) {
+    td4.textContent = 'Read';
+  } else {
+    td4.textContent = 'Not read';
+  }
 
   deleteButton.textContent = 'Delete';
-  deleteButton.className = 'delete';
-  td4.id = 'readButton';
+  deleteButton.className = 'is-danger';
+  deleteButton.id = 'delete-btn';
+  td4.className = 'read-button is-success';
+  td4.id = 'read-btn';
 
   tr.appendChild(td1);
   tr.appendChild(td2);
@@ -45,48 +44,50 @@ function addElementsToHtml(title, author, page, readed) {
   bookTable.appendChild(tr);
 }
 
-function bookParams() {
+function bookInputsSelector() {
   const formValues = [];
   ['#title', '#author', '#page', '#read'].forEach(val => formValues.push(bookForm.querySelector(val)));
   return formValues;
 }
 
 function clearInputs() {
-  const [title, author, page, readed] = bookParams();
+  const [title, author, page, read] = bookInputsSelector();
   title.value = '';
   author.value = '';
   page.value = '';
-  readed.value = 'read';
+  read.value = 'true';
 }
 
 
 bookForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
-  const [title, author, page, readed] = bookParams();
+  const [title, author, page, read] = bookInputsSelector();
 
-  const createdBook = Book(title.value, author.value, page.value, readed.value);
+  const createdBook = Book(title.value, author.value, +page.value, read.value === 'true');
 
-  addElementsToHtml(title.value, author.value, page.value, readed.value);
+  addElementsToHtml(createdBook);
 
   clearInputs();
   addBookToLibrary(createdBook);
 });
 
 const toggleD = (e) => {
-  if (e.target.className === 'delete') {
+  if (e.target.id === 'delete-btn') {
     const tr = e.target.parentElement;
     bookTable.removeChild(tr);
   }
 };
 
 const toggleR = (e) => {
-  if (e.target.id === 'readButton') {
+  if (e.target.id === 'read-btn') {
     const btn = e.target;
-    if (btn.textContent === 'read') {
-      btn.textContent = 'already Readed';
+    if (btn.textContent === 'Read') {
+      btn.textContent = 'Not Read';
+      btn.className = 'is-warning';
     } else {
-      btn.textContent = 'read';
+      btn.textContent = 'Read';
+      btn.className = 'is-success';
     }
   }
 };

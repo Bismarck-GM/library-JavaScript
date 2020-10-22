@@ -4,26 +4,61 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./assets/stylesheet/index.css">
+  <link rel="stylesheet" href="./assets/stylesheet/bulma.css">
   <title>Library</title>
 </head>
 <body>
+  <div class="columns is-centered mb-5">
+    <div class="column is-half">
+      <h1 class="is-size-1">Library</h1>
+      <form id="book-form">
+        <div class="field">
+          <div class="control">
+            <label class="label">Book Title</label>
+            <input class="input is-info" id="title" type="text" placeholder="Title" required>
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <label class="label">Author</label>
+            <input class="input is-info" id="author" type="text" placeholder="Author" required>
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <label class="label">Amount of pages</label>
+            <input class="input is-info" id="page" type="number" placeholder="Pages" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Read yet?</label>
+          <div class="control">
+            <div class="select">
+              <select id="read">
+                <option value="true">Read</option>
+                <option value="false">Already Read</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="field is-grouped">
+          <div class="control">
+            <button class="button is-link">Add a new book</button>
+          </div>
+        </div>
+        
+      </form>
+    </div>
+  </div>
   <div class="container">
-    <h1>Library</h1>
-    <form id="book-form">
-      <input id="title" type="text" placeholder="title" required>
-      <input id="author" type="text" placeholder="author" required>
-      <input id="page" type="number" placeholder="pages" required>
-      <select id="read">
-        <option value="true">Read</option>
-        <option value="false">Already Readed</option>
-      </select>
-      <button>Add a new book</button>
-    </form>
-    <table id="book-table">
+    <table id="book-table" class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth has-text-centered">
       <tr>
         <th>Title</th>
         <th>Author</th>
         <th>Number of Pages</th>
+        <th></th>
+        <th></th>
       </tr>
 
     </table>
