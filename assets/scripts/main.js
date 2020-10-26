@@ -1,10 +1,13 @@
 const myLibrary = [];
-const Book = (title, author, page, read) => ({
-  title,
-  author,
-  page,
-  read,
-});
+class Book {
+  constructor(title, author, page, read) {
+    this.title = title;
+    this.author = author;
+    this.page = page;
+    this.read = read;
+  }
+}
+
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
@@ -66,7 +69,7 @@ bookForm.addEventListener('submit', (e) => {
 
   const [title, author, page, read] = bookInputsSelector();
 
-  const createdBook = Book(title.value, author.value, +page.value, read.value === 'true');
+  const createdBook = new Book(title.value, author.value, +page.value, read.value === 'true');
 
   addElementsToHtml(createdBook);
 
